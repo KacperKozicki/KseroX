@@ -1,55 +1,39 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Reflection.Metadata;
+using System.Reflection;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace ver1
+namespace ver3
 {
-    public class Copier : BaseDevice, IPrinter, IScanner, IDevice
+    public class Scanner : IScanner
     {
-        public int PrintCounter { get; private set; } = 0;
-        public int ScanCounter { get; private set; } = 0;
-        public Copier()
-        {
-            
-        }
-
-
         private int counter = 0;
         public new int Counter => counter;
+        
 
-        public new void PowerOn()
+
+        private IDevice.State state = IDevice.State.off;
+
+        public void PowerOn()
         {
-            if (state != IDevice.State.on)
+            if (state == IDevice.State.off)
             {
-                counter++;
+                state = IDevice.State.on;
+                Console.WriteLine("Scanner is on ...");
             }
-            state = IDevice.State.on;
-            Console.WriteLine("Copier is on ...");
-            
-            
         }
 
-        public void Print(in IDocument document)
+        public void PowerOff()
         {
             if (state == IDevice.State.on)
             {
-
-
-                PrintCounter++;
-                DateTime time = DateTime.Now;
-                string name = document.GetFileName();
-                Console.WriteLine($"{time} Print: {name}");
+                state = IDevice.State.off;
+                Console.WriteLine("...Scanner is off");
             }
-
         }
 
         public void Scan(out IDocument document, IDocument.FormatType formatType = IDocument.FormatType.JPG)
         {
-
-
             string fileType;
             switch (formatType)
             {
@@ -67,31 +51,21 @@ namespace ver1
                     break;
             }
 
-            string fileName = $"{fileType}Scan{ScanCounter}.{formatType.ToString().ToLower()}";
-
-
+            string fileName = $"{fileType}Scan.{formatType.ToString().ToLower()}";
 
             document = new ImageDocument(fileName);
 
             if (state == IDevice.State.on)
             {
-                ScanCounter++;
                 Console.WriteLine($"{DateTime.Now.ToString()} Scan: {fileName}");
             }
-
-
-
         }
 
-
-        public void ScanAndPrint()
+        public IDevice.State GetState()
         {
-            IDocument document;
-            Scan(out document);
-            if (document != null)
-            {
-                Print(document);
-            }
+            return state;
         }
+
+       
     }
 }

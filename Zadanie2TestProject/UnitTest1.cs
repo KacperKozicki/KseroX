@@ -193,22 +193,25 @@ namespace Zadanie2TestProject
 
 
         [TestMethod]
-            public void ReceiveFax_StateOff_ShouldNotIncreaseFaxCountersAndReturnNull()
-            {
-                // Arrange
-                var device = new MultifunctionalDevice();
-                var faxNumber = "123456789";
-                device.PowerOff();
+        public void ReceiveFax_StateOff_ShouldNotIncreaseFaxCountersAndReturnNull()
+        {
+            // Arrange
+            var device = new MultifunctionalDevice();
+            var faxNumber = "123456789";
+            device.PowerOff();
 
-                // Act
-                device.ReceiveFax(out var document, faxNumber);
+            // Act
+            device.ReceiveFax(out var document, faxNumber);
 
-                // Assert
-                Assert.IsNull(document);
-                Assert.AreEqual(0, device.FaxCounter);
-                Assert.AreEqual(0, device.FaxFromCounter);
-            }
+            // Assert
+            Assert.IsNull(document);
+            Assert.AreEqual(0, device.FaxCounter);
+            Assert.AreEqual(0, device.FaxFromCounter);
         }
 
-    
+
+
+        
+
+    }
 }
