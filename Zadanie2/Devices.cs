@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Diagnostics.Metrics;
 
 namespace ver1
 {
@@ -51,5 +50,12 @@ namespace ver1
         // w przeciwnym przypadku nic się dzieje
         void Scan(out IDocument document, IDocument.FormatType formatType);
     }
+
+    public interface IFax : IDevice
+    {
+        void SendFax(in IDocument document, string faxNumber);
+        void ReceiveFax(out IDocument document, string faxNumber);
+    }
+
 
 }
