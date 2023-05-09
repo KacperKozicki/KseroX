@@ -41,17 +41,16 @@ namespace Zadanie3TestProject
         {
             // arrange
             Copier copier = new Copier();
-            int expectedPrintCounter = 1;
-            int expectedScanCounter = 1;
-
+            copier.PowerOn();
             // act
             IDocument document = new ImageDocument("test.jpg");
             copier.ScanAndPrint();
 
             // assert
-            Assert.AreEqual(expectedPrintCounter, copier.PrintCounter);
-            Assert.AreEqual(expectedScanCounter, copier.ScanCounter);
+            Assert.AreEqual(1, copier.PrintCounter);
+            Assert.AreEqual(1, copier.ScanCounter);
         }
+       
 
         [TestMethod]
         public void TestScan()

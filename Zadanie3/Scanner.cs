@@ -9,8 +9,8 @@ namespace ver3
     {
         private int counter = 0;
         public new int Counter => counter;
-        
 
+        public int ScanCounter { get; private set; }
 
         private IDevice.State state = IDevice.State.off;
 
@@ -51,7 +51,7 @@ namespace ver3
                     break;
             }
 
-            string fileName = $"{fileType}Scan.{formatType.ToString().ToLower()}";
+            string fileName = $"{fileType}Scan{ScanCounter}.{formatType.ToString().ToLower()}";
 
             document = new ImageDocument(fileName);
 

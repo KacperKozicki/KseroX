@@ -1,5 +1,5 @@
 ﻿using System;
-using ver1;
+using ver2;
 namespace Zadanie2
 {
     internal class Program

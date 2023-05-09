@@ -1,5 +1,5 @@
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using ver1;
+using ver2;
 using System;
 using System.IO;
 using Zadanie2;

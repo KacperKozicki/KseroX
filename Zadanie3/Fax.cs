@@ -1,20 +1,44 @@
-﻿using Microsoft.VisualBasic.FileIO;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Text;
-using ver2;
+using ver3;
 
-namespace Zadanie2
+
+namespace Zadanie3
 {
-    public class MultifunctionalDevice : Copier, IPrinter, IScanner, IFax, IDevice
+    public class Fax : IFax, IDevice
     {
-
         public int FaxCounter { get; private set; } = 0;
         public int FaxInCounter { get; private set; } = 0;
         public int FaxFromCounter { get; private set; } = 0;
-       
+        private int counter = 0;
+        public new int Counter => counter;
 
-        
+        private IDevice.State state = IDevice.State.off;
+        public int PrintCounter { get; private set; }
+
+        public void PowerOn()
+        {
+            if (state == IDevice.State.off)
+            {
+                state = IDevice.State.on;
+                Console.WriteLine("Fax is on ...");
+            }
+        }
+
+        public void PowerOff()
+        {
+            if (state == IDevice.State.on)
+            {
+                state = IDevice.State.off;
+                Console.WriteLine("...Fax is off");
+            }
+        }
+        public IDevice.State GetState()
+        {
+            return state;
+        }
+
         public void SendFax(in IDocument document, string faxNumber)
         {
             if (state == IDevice.State.on)
@@ -42,5 +66,4 @@ namespace Zadanie2
             }
         }
     }
-
 }

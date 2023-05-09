@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ver1
+namespace ver2
 {
     public interface IDevice
     {

@@ -4,12 +4,13 @@ using System.Text;
 
 namespace ver3
 {
-    internal class Printer : IPrinter
+    public class Printer : IPrinter
     {
         private int counter = 0;
         public new int Counter => counter; 
 
         private IDevice.State state = IDevice.State.off;
+        public int PrintCounter { get; private set; }
 
         public void PowerOn()
         {
@@ -33,6 +34,7 @@ namespace ver3
         {
             if (state == IDevice.State.on)
             {
+                PrintCounter++;
                 DateTime time = DateTime.Now;
                 string name = document.GetFileName();
                 Console.WriteLine($"{time} Print: {name}");

@@ -10,7 +10,7 @@ class Program
         xerox.Print(in doc1);
 
         IDocument doc2;
-        xerox.Scan(out doc2);
+        xerox.Scan(out doc1);
 
         xerox.ScanAndPrint();
         System.Console.WriteLine(xerox.Counter);

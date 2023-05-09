@@ -51,5 +51,9 @@ namespace ver3
         void Scan(out IDocument document, IDocument.FormatType formatType);
        
     }
-
+    public interface IFax : IDevice
+    {
+        void SendFax(in IDocument document, string faxNumber);
+        void ReceiveFax(out IDocument document, string faxNumber);
+    }
 }

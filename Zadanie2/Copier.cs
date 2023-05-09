@@ -5,7 +5,7 @@ using System.Reflection.Metadata;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace ver1
+namespace ver2
 {
     public class Copier : BaseDevice, IPrinter, IScanner, IDevice
     {
