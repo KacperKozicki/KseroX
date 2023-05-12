@@ -45,5 +45,10 @@ namespace ver3
         {
             return state;
         }
+
+        public int GetPrintCounter()
+        {
+            return PrintCounter;
+        }
     }
 }

@@ -38,8 +38,8 @@ namespace Zadanie3
             if (state == IDevice.State.on)
             {
                 
-                FaxCounter++;
-                FaxInCounter++;
+                //FaxCounter++;
+                //FaxInCounter++;
                 fax.SendFax(document,faxNumber);
             }
         }
@@ -50,8 +50,8 @@ namespace Zadanie3
             document = new TextDocument($"{fileName} from {faxNumber}");
             if (state == IDevice.State.on)
             {
-                FaxCounter++;
-                FaxFromCounter++;
+                //FaxCounter++;
+                //FaxFromCounter++;
                 fax.ReceiveFax(out document, faxNumber);
             }
             

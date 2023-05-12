@@ -12,7 +12,7 @@ namespace ver3
         public IPrinter printer;
         public IScanner scanner;
 
-        public int PrintCounter { get; private set; } 
+       
         public int ScanCounter { get; private set; } = 0;
 
         public new int Counter { get; private set; } = 0;
@@ -21,10 +21,12 @@ namespace ver3
         {
             scanner = new Scanner();
             printer = new Printer();
-        }
-    
 
-        
+           
+      
+    }
+       
+
 
         public new void PowerOn()
         {
@@ -61,7 +63,7 @@ namespace ver3
                 if (document != null)
                 {
                     printer.Print(document);
-                    PrintCounter++;
+                   // PrintCounter++;
                 }
                 ScanCounter++;
             }
@@ -80,7 +82,7 @@ namespace ver3
         {
             //IDocument document;
           
-                PrintCounter++;
+                //PrintCounter++;
                 printer.Print(in document);
                
             
