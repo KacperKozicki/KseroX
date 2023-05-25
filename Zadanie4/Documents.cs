@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace ver2
+namespace Zadanie4
 {
     public interface IDocument
     {

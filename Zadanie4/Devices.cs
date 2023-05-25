@@ -8,7 +8,7 @@ namespace Zadanie4
 {
     public interface IDevice
     {
-        enum State { on, off, standby };
+        enum State { Off, On, Standby }
 
         void PowerOn();
         void PowerOff();
@@ -19,28 +19,51 @@ namespace Zadanie4
 
     public interface IPrinter : IDevice
     {
-        void Print(in IDocument document);
-
-        protected virtual void SetState(State state)
+        void Print(IDocument document)
         {
-            Console.WriteLine($"Printer state set to {state}");
+            if (GetState() == State.On)
+            {
+                PrintCounter++;
+                DateTime time = DateTime.Now;
+                string name = document.GetFileName();
+                Console.WriteLine($"{time} Print: {name}");
+            }
         }
+
+        int PrintCounter { get; }
     }
 
     public interface IScanner : IDevice
     {
-        void Scan(out IDocument document, IDocument.FormatType formatType);
-
-        protected virtual void SetState(State state)
+        void Scan(out IDocument document, IDocument.FormatType formatType)
         {
-            Console.WriteLine($"Scanner state set to {state}");
+            string fileType;
+            switch (formatType)
+            {
+                case IDocument.FormatType.PDF:
+                    fileType = "PDF";
+                    break;
+                case IDocument.FormatType.JPG:
+                    fileType = "Image";
+                    break;
+                case IDocument.FormatType.TXT:
+                    fileType = "Text";
+                    break;
+                default:
+                    fileType = "Unknown";
+                    break;
+            }
+
+            string fileName = $"{fileType}Scan{ScanCounter}.{formatType.ToString().ToLower()}";
+            document = new ImageDocument(fileName);
+
+            if (GetState() == State.On)
+            {
+                ScanCounter++;
+                Console.WriteLine($"{DateTime.Now.ToString()} Scan: {fileName}");
+            }
         }
-    }
 
-    public interface IDocument
-    {
-        enum FormatType { PDF, JPG, TXT };
-
-        string GetFileName();
+        int ScanCounter { get; }
     }
 }
