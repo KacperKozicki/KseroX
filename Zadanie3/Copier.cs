@@ -14,6 +14,7 @@ namespace ver3
 
        
         public int ScanCounter { get; private set; } = 0;
+        public int PrintCounter { get; private set; } = 0;
 
         public new int Counter { get; private set; } = 0;
 
@@ -63,7 +64,7 @@ namespace ver3
                 if (document != null)
                 {
                     printer.Print(document);
-                   // PrintCounter++;
+                    PrintCounter++;
                 }
                 ScanCounter++;
             }
@@ -80,10 +81,10 @@ namespace ver3
 
         public void Print(in IDocument document)
         {
-            //IDocument document;
-          
-                //PrintCounter++;
-                printer.Print(in document);
+           // IDocument document;
+
+            PrintCounter++;
+            printer.Print(in document);
                
             
         }
